@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #ffcccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background-color: #fff3e6;
+            padding: 30px 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+        }
+        .login-container h2 {
+            margin-bottom: 20px;
+            color: #ff6f61;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .login-container input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #ff9aa2;
+            border-radius: 15px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        .login-container input:focus {
+            border-color: #ffb7b2;
+        }
+        .login-container button {
+            width: 100%;
+            padding: 12px;
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .login-container button:hover {
+            background-color: #ff3d3d;
+        }
+        .login-container .forgot-password {
+            margin-top: 15px;
+            font-size: 12px;
+            color: #ff6f61;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .login-container .forgot-password:hover {
+            color: #ff3d3d;
+        }
+        /* Heart icon decoration */
+        .heart-icon {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 40px;
+            color: #ff6f61;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <!-- Heart Icon -->
+        <div class="heart-icon">❤️</div>
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Username" value="sami<3jy">
+            <input type="password" id="password" placeholder="our anniversary date">
+            <button type="button" onclick="validateLogin()">Login</button>
+        </form>
+        <a href="forgot.html" class="forgot-password">Forgot Password?</a>
+    </div>
+
+    <script>
+        // Function to validate login credentials
+        function validateLogin() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Valid username and password
+            const validUsername = "sami<3jy";
+            const validPassword = "2309";
+
+            if (username === validUsername && password === validPassword) {
+                alert("good job babey :)");
+                // Redirect to a success page or dashboard (optional)
+                window.location.href = "success.html"; // You can create this page later
+            } else {
+                if (password !== validPassword) {
+                    alert("hello how did you get this wrong?");
+                    window.location.href = "forgot.html"; // Redirect to forgot password page
+                } else {
+                    alert("Invalid Username!");
+                }
+            }
+        }
+    </script>
+</body>
+</html>

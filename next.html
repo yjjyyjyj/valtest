@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Page</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #8b0000; /* Dark red background */
+            margin: 0;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+
+        /* Fullscreen container for fireworks */
+        .fireworks-container {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f5f5dc; /* Beige background */
+            text-align: center;
+            color: #ff6f61; /* Soft coral text */
+            font-size: 20px;
+        }
+
+        /* Firework particles */
+        .firework {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #ff6f61;
+            opacity: 0;
+            animation: explode 2s ease-out forwards;
+        }
+        .firework:nth-child(odd) {
+            background-color: #ffb7b2;
+        }
+        .firework:nth-child(even) {
+            background-color: #ff3d3d;
+        }
+
+        /* Explosion animation */
+        @keyframes explode {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(5);
+                opacity: 0;
+            }
+        }
+
+        /* Content container */
+        .content-container {
+            background-color: #ffe6e6; /* Soft pink */
+            padding: 30px 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            width: 350px;
+            text-align: center;
+            margin: 50px auto;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        /* Reveal animation */
+        .reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Title with aligned hearts */
+        .content-container h1 {
+            font-size: 28px;
+            color: #ff6f61;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .content-container h1 span {
+            margin: 0 5px;
+        }
+
+        /* Buttons */
+        .buttons-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .buttons-container button {
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 120px; /* Consistent width for both buttons */
+        }
+        .yes-button {
+            background-color: #ff6f61; /* Coral */
+            color: white;
+        }
+        .no-button {
+            background-color: #ffcccc; /* Light pink */
+            color: #ff3d3d; /* Darker coral */
+            position: relative;
+        }
+        .no-button::after {
+            content: "no...";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .no-button:hover {
+            background-color: #ff6f61; /* Coral */
+            color: white;
+            transform: scale(1.1); /* Slightly enlarge on hover */
+        }
+        .no-button:hover::after {
+            content: "YES!!!";
+        }
+
+        /* Final message */
+        .final-message {
+            font-size: 24px;
+            color: #ff6f61;
+            margin-top: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+        .final-message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Scrollable section */
+        .scrollable-section {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #ff6f61; /* Soft coral text */
+            font-size: 20px;
+            background-color: #f5f5dc; /* Beige background */
+        }
+
+        /* Image Styling */
+        .image-container {
+            margin-top: 40px; /* Increased margin to move the image down */
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+        }
+        .image-container img {
+            max-width: 100%; /* Ensure the image is responsive */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 15px; /* Rounded corners for a softer look */
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* Add a shadow for depth */
+        }
+    </style>
+</head>
+<body>
+    <!-- Fireworks Section -->
+    <div class="fireworks-container" id="fireworks-container">
+        hello sami <br> scroll down!
+    </div>
+
+    <!-- Scrollable Section -->
+    <div class="scrollable-section">
+        almost thereeee
+    </div>
+
+    <!-- Content Section -->
+    <div class="content-container" id="content-container">
+        <h1><span>❤️</span> hi sami <span>❤️</span></h1>
+        <p>be jy's Valentine?</p>
+        <div class="buttons-container">
+            <button class="yes-button" onclick="triggerFireworks()">YES!!!</button>
+            <button class="no-button" onclick="triggerFireworks()"></button>
+        </div>
+        <div class="final-message" id="final-message">See you on the 14th <3</div>
+
+        <!-- Image Container -->
+        <div class="image-container">
+            <img src="website.jpg" alt="Valentine's Image">
+        </div>
+    </div>
+
+    <script>
+        // Function to create fireworks
+        function triggerFireworks() {
+            const fireworksContainer = document.getElementById('fireworks-container');
+            fireworksContainer.innerHTML = ''; // Clear previous fireworks
+
+            // Create fireworks
+            for (let i = 0; i < 100; i++) {
+                const firework = document.createElement('div');
+                firework.classList.add('firework');
+                firework.style.left = Math.random() * 100 + 'vw';
+                firework.style.top = Math.random() * 100 + 'vh';
+                firework.style.animationDelay = Math.random() * 2 + 's'; // Random delay
+                fireworksContainer.appendChild(firework);
+            }
+
+            // Show final message immediately
+            document.getElementById('final-message').classList.add('show');
+        }
+
+        // Scroll-triggered reveal animation
+        window.addEventListener('scroll', () => {
+            const contentContainer = document.getElementById('content-container');
+            const scrollPosition = window.scrollY + window.innerHeight;
+            const contentPosition = contentContainer.offsetTop;
+
+            if (scrollPosition > contentPosition) {
+                contentContainer.classList.add('reveal');
+            }
+        });
+
+        // Trigger fireworks when buttons are clicked
+        document.querySelector('.yes-button').addEventListener('click', triggerFireworks);
+        document.querySelector('.no-button').addEventListener('click', triggerFireworks);
+    </script>
+</body>
+</html>
